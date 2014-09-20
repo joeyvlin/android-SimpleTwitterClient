@@ -1,0 +1,73 @@
+package com.codepath.apps.restclienttemplate;
+
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.codepath.apps.basictwitter.TweetArrayAdapter;
+import com.codepath.apps.basictwitter.TwitterApplication;
+import com.codepath.apps.basictwitter.TwitterClient;
+import com.codepath.apps.basictwitter.models.Tweet;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+public class TimelineActivity extends Activity {
+	
+	private TwitterClient client;
+	private ArrayList<Tweet> tweets;
+	private ArrayAdapter<Tweet> aTweets;
+	private ListView lvTweets;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_timeline);
+		client = TwitterApplication.getRestClient();
+		populateTimeline();
+		lvTweets = (ListView) findViewById(R.id.lvTweets);
+		tweets = new ArrayList<Tweet>();
+//		aTweets = new ArrayAdapter<Tweet>(this, android.R.layout.simple_list_item_1, tweets);
+		aTweets = new TweetArrayAdapter(this, tweets);
+		lvTweets.setAdapter(aTweets);
+	}
+	
+	public void populateTimeline() {
+		client.getHometimeline(new JsonHttpResponseHandler() {
+			
+			@Override
+			public void onSuccess(JSONArray json) {
+				aTweets.addAll(Tweet.fromJsonArray(json));
+			}
+			
+			@Override
+			public void onFailure(Throwable e, String s) {
+				Log.d("debug", e.toString());
+				Log.d("debug", s.toString());
+			}
+		});
+	}
+	
+	 public Boolean isNetworkAvailable() {
+		 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		 return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+	 }
+	 
+	 public boolean checkNetworkConnection(){
+		 if(isNetworkAvailable()){
+			 return true;
+		 }else{
+			 Toast.makeText(this, "Network connection is unavability", Toast.LENGTH_LONG).show();
+			 return false;
+		 }
+	 }
+}
