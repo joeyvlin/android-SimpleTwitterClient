@@ -3,6 +3,7 @@ package com.codepath.apps.basictwitter;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,15 +34,15 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		ImageView ivProfileImage = (ImageView) v.findViewById(R.id.ivProfileImage);
 		TextView tvUserName = (TextView) v.findViewById(R.id.tvUserName);
 		TextView tvBody = (TextView) v.findViewById(R.id.tvBody);
-//		TextView tvCreatedAt = (TextView) v.findViewById(R.id.tvCreatedAt);
-//		TextView tvName = (TextView) v.findViewById(R.id.tvName);
+		TextView tvCreatedAt = (TextView) v.findViewById(R.id.tvCreatedAt);
+		TextView tvScreenName = (TextView) v.findViewById(R.id.tvScreenName);
 		ivProfileImage.setImageResource(android.R.color.transparent);
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		imageLoader.displayImage(tweet.getUser().getProfileImageUrl(), ivProfileImage);
 		tvUserName.setText(tweet.getUser().getScreenName());
 		tvBody.setText(tweet.getBody());
-//		tvCreatedAt.setText(tweet.getRelativeTimeAgo());
-//		tvName.setText(tweet.getUser().getName());
+		tvCreatedAt.setText(tweet.getRelativeTimeAgo(tweet.getCreatedAt()));
+		tvScreenName.setText("@" + tweet.getUser().getScreenName());
 		return v;
 	}
 

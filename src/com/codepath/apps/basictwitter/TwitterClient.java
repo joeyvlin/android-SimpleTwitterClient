@@ -40,6 +40,18 @@ public class TwitterClient extends OAuthBaseClient {
 		if (maxId != null)	params.put("max_id", maxId.toString());
 		client.get(apiUrl, params, handler);
 	}
+	
+	public void getVerifiedCredentials(AsyncHttpResponseHandler handler){
+		String apiUrl = getApiUrl("account/verify_credentials.json");
+		client.get(apiUrl, handler);
+	}
+	
+	public void postTweet(AsyncHttpResponseHandler handler, String tweet){
+		String apiUrl = getApiUrl("statuses/update.json");
+		RequestParams params = new RequestParams();
+		params.put("status", tweet);
+		client.post(apiUrl, params, handler);
+	}
 
 	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here

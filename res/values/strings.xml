@@ -9,5 +9,6 @@
     <string name="title_activity_timeline">TimelineActivity</string>
     <string name="food_label">\@foo</string>
     <string name="tweet_body_label">This is the tweet body</string>
+    <string name="title_activity_compose">ComposeActivity</string>
 
 </resources>

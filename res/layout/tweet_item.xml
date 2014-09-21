@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp" >
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -17,6 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textSize="13sp"
         android:text="@string/food_label" />
 
     <TextView
@@ -25,6 +31,31 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvUserName"
         android:layout_below="@+id/tvUserName"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
         android:text="@string/tweet_body_label" />
+
+    <TextView
+        android:id="@+id/tvCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tvUserName"
+        android:text="Time"
+        android:textColor="#ccc"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tvScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvUserName"
+        android:layout_alignBottom="@+id/tvUserName"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@+id/tvUserName"
+        android:text="screenName"
+        android:textColor="#ccc"
+        android:textSize="9sp"
+        android:textStyle="italic" />
 
 </RelativeLayout>

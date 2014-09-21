@@ -6,10 +6,13 @@ import org.json.JSONArray;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ public class TimelineActivity extends Activity {
 	
 	private Long sinceId;
 	private Long maxId;
+	
+	private final int COMPOSE_CODE = 100;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,41 @@ public class TimelineActivity extends Activity {
 			
 		});
 		sinceId = 1L;
+		ArrayList<Tweet> tweetList = Tweet.getInitialTweetList();
+		if(tweetList != null && tweetList.size() > 0){
+			aTweets.addAll(tweetList);
+		}
+		
+		if(aTweets.getCount() > 0){
+			Integer totalCount = aTweets.getCount();
+			sinceId = aTweets.getItem(0).getUid();
+			maxId = aTweets.getItem(totalCount-1).getUid();
+		}
 		populateTimeline(sinceId, null);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.timeline, menu);
+        return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.compose_tweet) {
+			Intent intent = new Intent(this, ComposeActivity.class);
+			startActivityForResult(intent, COMPOSE_CODE);
+		}
+		return true;
+		
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (COMPOSE_CODE == requestCode && data != null) {
+			Tweet newTweet = (Tweet) data.getSerializableExtra("tweet");
+			aTweets.insert(newTweet, 0);
+		}
 	}
 	
 	private void populateTimeline(Long since_id, Long max_id) {
