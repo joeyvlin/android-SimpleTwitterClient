@@ -1,10 +1,10 @@
 package com.codepath.apps.basictwitter;
 
 import org.scribe.builder.api.Api;
-import org.scribe.builder.api.FlickrApi;
 import org.scribe.builder.api.TwitterApi;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -43,6 +43,7 @@ public class TwitterClient extends OAuthBaseClient {
 	
 	public void getVerifiedCredentials(AsyncHttpResponseHandler handler){
 		String apiUrl = getApiUrl("account/verify_credentials.json");
+		Log.d("debug", apiUrl);
 		client.get(apiUrl, handler);
 	}
 	

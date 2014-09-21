@@ -51,12 +51,16 @@ public class Tweet extends Model implements Serializable{
 			if(tweet == null) {
 				// Extra values from the json to populate the member variables
 				tweet = new Tweet();
+				try {
 				tweet.body = jsonObject.getString("text");
 				tweet.uid = jsonObject.getLong("id");
 				tweet.createdAt = jsonObject.getString("created_at");
 				tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
 				tweet.screenName = jsonObject.getString("screen_name");
 				tweet.save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			return tweet;
 		} catch (JSONException e) {
