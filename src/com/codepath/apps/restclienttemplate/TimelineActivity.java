@@ -37,8 +37,6 @@ public class TimelineActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		client = TwitterApplication.getRestClient();
-		sinceId = 1L;
-		populateTimeline(sinceId, null);
 		lvTweets = (PullToRefreshListView) findViewById(R.id.lvTweets);
 		lvTweets.setOnRefreshListener(new OnRefreshListener() {
 
@@ -51,6 +49,16 @@ public class TimelineActivity extends Activity {
 //		aTweets = new ArrayAdapter<Tweet>(this, android.R.layout.simple_list_item_1, tweets);
 		aTweets = new TweetArrayAdapter(this, tweets);
 		lvTweets.setAdapter(aTweets);
+		lvTweets.setOnScrollListener(new EndlessScrollListener() {
+
+			@Override
+			public void onLoadMore(int page, int totalItemsCount) {
+				populateTimeline(null, maxId);
+			}
+			
+		});
+		sinceId = 1L;
+		populateTimeline(sinceId, null);
 	}
 	
 	private void populateTimeline(Long since_id, Long max_id) {
