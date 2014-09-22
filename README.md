@@ -2,10 +2,6 @@ This is a twitter clone with user home timeline and compose new tweet feature
 
 User Stories:
 
-![Video Walkthrough](simpletwitter.gif)
-
-The following user stories must be completed:
-
 * [x] Required:User can sign in to Twitter using OAuth login
 * [x] Required:User can view the tweets from their home timeline
 * [x] Required:User should be able to see the username, name, body and timestamp for each tweet
@@ -18,3 +14,6 @@ The following user stories must be completed:
 * [x] Advanced: User can refresh tweets timeline by pulling down to refresh (i.e pull-to-refresh)
 * [x] Advanced: User can open the twitter app offline and see last loaded tweets
 	Tweets are persisted into sqlite and can be displayed from the local DB
+	
+	
+![Video Walkthrough](simpletwitter.gif)

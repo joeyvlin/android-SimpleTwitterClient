@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ComposeActivity" >
+
+    <ImageView
+        android:id="@+id/ivProfileImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+
+    <EditText
+        android:id="@+id/newTweetId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivProfileImg"
+        android:layout_below="@+id/ivProfileImg"
+        android:layout_marginTop="19dp"
+        android:background="@null"
+        android:ems="10"
+        android:hint="What&apos;s Happening?" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newTweetId"
+        android:layout_below="@+id/newTweetId"
+        android:layout_marginTop="56dp"
+        android:onClick="onSubmitTweet"
+        android:text="Submit" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivProfileImg"
+        android:layout_toRightOf="@+id/ivProfileImg"
+        android:layout_marginLeft="5dp"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/tvSN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivProfileImg"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/ivProfileImg"
+        android:text="SN"
+        android:textColor="#ccc"
+        android:textStyle="italic" />
+
+</RelativeLayout>
