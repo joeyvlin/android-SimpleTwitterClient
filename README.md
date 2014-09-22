@@ -15,5 +15,7 @@ User Stories:
 * [x] Advanced: User can open the twitter app offline and see last loaded tweets
 	Tweets are persisted into sqlite and can be displayed from the local DB
 	
+Time spent: +/- 10 hours	
+	
 	
 ![Video Walkthrough](simpletwitter.gif)
