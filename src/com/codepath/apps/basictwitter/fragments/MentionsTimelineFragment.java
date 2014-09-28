@@ -22,11 +22,14 @@ public class MentionsTimelineFragment extends TweetsListFragment {
 	
 	@Override
 	protected void populateTimeline(Long since_id, Long max_id) {
-		client.getMentionsTimeline(new JsonHttpResponseHandler() {
+		client.getMentionsTimeline(since_id, max_id, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray json) {
 				Log.d("debug", json.toString());
 				addAll(Tweet.fromJsonArray(json));
+				int count = getAdapter().getCount();
+				sinceId = getAdapter().getItem(0).getUid();
+				maxId = getAdapter().getItem(count - 1).getUid();
 			}
 			
 			@Override

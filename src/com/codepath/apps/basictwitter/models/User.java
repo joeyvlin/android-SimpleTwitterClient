@@ -44,7 +44,7 @@ public class User extends Model implements Serializable{
 		try{
 			User user = findUser(jsonObject.getLong("id"));
 			if(user != null){
-				Log.d("debug", "User found: " + user.getName());
+				Log.d("debug", "User found: " + user.getName() + ": " + user.getUid());
 			}else{
 				Log.d("debug", " Not found: " + jsonObject.getLong("id"));
 			}

@@ -5,12 +5,15 @@ import android.app.ActionBar.Tab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codepath.apps.basictwitter.fragments.HomeTimelineFragment;
 import com.codepath.apps.basictwitter.fragments.MentionsTimelineFragment;
 import com.codepath.apps.basictwitter.listeners.FragmentTabListener;
+import com.codepath.apps.basictwitter.models.CurrentUser;
+import com.codepath.apps.basictwitter.models.User;
 
 //import eu.erikw.PullToRefreshListView;
 //import eu.erikw.PullToRefreshListView.OnRefreshListener;
@@ -71,6 +74,10 @@ public class TimelineActivity extends FragmentActivity {
 	
 	public void onProfileView(MenuItem mi) {
 		Intent i = new Intent(this, ProfileActivity.class);
+		User currentUser = CurrentUser.getCurrentUser();
+		Log.d("debug", "current user: " + currentUser.getUid());
+//		i.putExtra("user", currentUser);
+		i.putExtra("uid", currentUser.getUid());
 		startActivity(i);
 	}
 
