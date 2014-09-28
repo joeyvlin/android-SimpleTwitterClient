@@ -9,8 +9,7 @@ import android.view.View;
 
 import com.codepath.apps.basictwitter.models.CurrentUser;
 import com.codepath.apps.basictwitter.models.User;
-import com.codepath.apps.restclienttemplate.R;
-import com.codepath.apps.restclienttemplate.TimelineActivity;
+import com.codepath.apps.basictwitter.R;
 import com.codepath.oauth.OAuthLoginActivity;
 import com.loopj.android.http.JsonHttpResponseHandler;
 

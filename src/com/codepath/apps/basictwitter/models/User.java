@@ -30,6 +30,15 @@ public class User extends Model implements Serializable{
 	
 	@Column(name="profile_image_url")
 	private String profileImageUrl;
+
+	@Column(name="followers_count")
+	private int followerCount;
+	
+	@Column(name="following_count")
+	private int followingCount;
+	
+	@Column(name="tagline")
+	private String tagline;
 	
 	public static User fromJson(JSONObject jsonObject){
 		try{
@@ -46,6 +55,9 @@ public class User extends Model implements Serializable{
 				user.uid = jsonObject.getLong("id");
 				user.screenName = jsonObject.getString("screen_name");
 				user.profileImageUrl = jsonObject.getString("profile_image_url");
+				user.followerCount = jsonObject.getInt("followers_count");
+				user.followingCount = jsonObject.getInt("friends_count");
+				user.tagline = jsonObject.getString("description");
 				user.save();
 				Log.d("debug", " New User Saved: " + jsonObject.getLong("id"));
 			}
@@ -75,4 +87,17 @@ public class User extends Model implements Serializable{
 	public String getProfileImageUrl() {
 		return profileImageUrl;
 	}
+	
+	public int getFollowerCount() {
+		return followerCount;
+	}
+
+	public int getFollowingCount() {
+		return followingCount;
+	}
+	
+	public String getTagline() {
+		return tagline;
+	}
+
 }

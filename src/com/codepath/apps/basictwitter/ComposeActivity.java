@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.basictwitter;
 
 import org.json.JSONObject;
 
@@ -11,10 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.codepath.apps.basictwitter.TwitterApplication;
 import com.codepath.apps.basictwitter.models.CurrentUser;
 import com.codepath.apps.basictwitter.models.Tweet;
 import com.codepath.apps.basictwitter.models.User;
+import com.codepath.apps.basictwitter.R;
+import com.codepath.apps.basictwitter.R.id;
+import com.codepath.apps.basictwitter.R.layout;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
