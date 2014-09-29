@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import com.codepath.apps.basictwitter.fragments.HomeTimelineFragment;
 import com.codepath.apps.basictwitter.fragments.MentionsTimelineFragment;
 import com.codepath.apps.basictwitter.listeners.FragmentTabListener;
 import com.codepath.apps.basictwitter.models.CurrentUser;
+import com.codepath.apps.basictwitter.models.Tweet;
 import com.codepath.apps.basictwitter.models.User;
 
 //import eu.erikw.PullToRefreshListView;
@@ -54,7 +56,7 @@ public class TimelineActivity extends FragmentActivity {
 			.setIcon(R.drawable.ic_home)
 			.setTag("HomeTimelineFragment")
 			.setTabListener(
-				new FragmentTabListener<HomeTimelineFragment>(R.id.flContainer, this, "first",
+				new FragmentTabListener<HomeTimelineFragment>(R.id.flContainer, this, "HomeTimelineFragment",
 								HomeTimelineFragment.class));
 
 		actionBar.addTab(tab1);
@@ -66,7 +68,7 @@ public class TimelineActivity extends FragmentActivity {
 			.setIcon(R.drawable.ic_mentions)
 			.setTag("MentionsTimelineFragment")
 			.setTabListener(
-			    new FragmentTabListener<MentionsTimelineFragment>(R.id.flContainer, this, "second",
+			    new FragmentTabListener<MentionsTimelineFragment>(R.id.flContainer, this, "MentionsTimelineFragment",
 								MentionsTimelineFragment.class));
 
 		actionBar.addTab(tab2);
@@ -152,11 +154,14 @@ public class TimelineActivity extends FragmentActivity {
 //		 }
 //	 }
 //	
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		if (COMPOSE_CODE == requestCode && data != null) {
-//			Tweet newTweet = (Tweet) data.getSerializableExtra("tweet");
-//			aTweets.insert(newTweet, 0);
-//		}
-//	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (COMPOSE_CODE == requestCode && data != null) {
+			Tweet newTweet = (Tweet) data.getSerializableExtra("tweet");
+			Log.d("debug", "new tweet: " + newTweet.toString());
+			HomeTimelineFragment homeTimelineFragment = (HomeTimelineFragment) getSupportFragmentManager().findFragmentByTag("HomeTimelineFragment");
+			homeTimelineFragment.getAdapter().insert(newTweet, 0);
+			homeTimelineFragment.scrollToTop();
+		}
+	}
 }

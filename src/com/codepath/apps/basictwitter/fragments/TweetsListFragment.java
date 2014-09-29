@@ -65,11 +65,15 @@ public abstract class TweetsListFragment extends Fragment {
 	protected abstract void populateTimeline(Long sinceId, Long maxId);
 	
 	// Delegate the adding to the internal adapter
-	protected void addAll(ArrayList<Tweet> tweets) {
+	public void addAll(ArrayList<Tweet> tweets) {
 		aTweets.addAll(tweets);
 	}
 	
-	protected ArrayAdapter<Tweet> getAdapter() {
+	public ArrayAdapter<Tweet> getAdapter() {
 		return aTweets;
+	}
+	
+	public void scrollToTop () {
+		lvTweets.setSelection(0);
 	}
 }
